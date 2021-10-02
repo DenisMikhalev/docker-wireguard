@@ -197,6 +197,7 @@ DUDE"
         fi
       done
     fi
+    PRESHARED_KEY=$(wg genpsk)
     eval "`printf %s`
     cat <<DUDE > /config/${PEER_ID}/${PEER_ID}.conf
 `cat /config/templates/peer.conf`
@@ -205,6 +206,7 @@ DUDE"
 [Peer]
 # ${PEER_ID}
 PublicKey = $(cat /config/${PEER_ID}/publickey-${PEER_ID})
+PresharedKey = ${PRESHARED_KEY}
 AllowedIPs = ${CLIENT_IP}/32
 
 DUDE
